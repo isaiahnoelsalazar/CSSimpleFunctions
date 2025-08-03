@@ -63,7 +63,7 @@ jobs:
       run: dotnet nuget push nugetPackage/*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }} --source "github"
     # Publish to NuGet.org
     - name: Publish to NuGet.org
-      run: dotnet nuget push nugetPackage/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push nugetPackage/*.nupkg --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
     
     #Create release
     - name: Create Release
