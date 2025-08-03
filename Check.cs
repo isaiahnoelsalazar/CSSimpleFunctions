@@ -1,111 +1,113 @@
 ﻿using System.Collections;
 
-public class Check
+namespace CSSimpleFunctions
 {
-    public static class Email
+    public class Check
     {
-        static ArrayList validDomainNames = new ArrayList();
-        static ArrayList validDomainExtensions = new ArrayList();
-        static ArrayList validDomains = new ArrayList();
-        static bool shouldUseFullDomain = false;
-
-        public static void AddValidDomainName(string str)
+        public static class Email
         {
-            validDomainNames.Add(str);
-        }
+            static ArrayList validDomainNames = new ArrayList();
+            static ArrayList validDomainExtensions = new ArrayList();
+            static ArrayList validDomains = new ArrayList();
+            static bool shouldUseFullDomain = false;
 
-        public static void AddValidDomainExtension(string str)
-        {
-            validDomainExtensions.Add(str);
-        }
-
-        public static void AddValidDomain(string str)
-        {
-            validDomains.Add(str);
-        }
-
-        public static void ShouldUseFullDomain()
-        {
-            shouldUseFullDomain = true;
-        }
-
-        public static void ShouldUseFullDomain(bool boolean)
-        {
-            shouldUseFullDomain = boolean;
-        }
-
-        public static bool IsValid(string str)
-        {
-            if (shouldUseFullDomain)
+            public static void AddValidDomainName(string str)
             {
-                try
+                validDomainNames.Add(str);
+            }
+
+            public static void AddValidDomainExtension(string str)
+            {
+                validDomainExtensions.Add(str);
+            }
+
+            public static void AddValidDomain(string str)
+            {
+                validDomains.Add(str);
+            }
+
+            public static void ShouldUseFullDomain()
+            {
+                shouldUseFullDomain = true;
+            }
+
+            public static void ShouldUseFullDomain(bool boolean)
+            {
+                shouldUseFullDomain = boolean;
+            }
+
+            public static bool IsValid(string str)
+            {
+                if (shouldUseFullDomain)
                 {
-                    string[] domain = str.Split('@');
-                    return validDomains.Contains(domain[1]);
-                }
-                catch
+                    try
+                    {
+                        string[] domain = str.Split('@');
+                        return validDomains.Contains(domain[1]);
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                } else
                 {
-                    return false;
+                    try
+                    {
+                        string[] domain = str.Split('@');
+                        string domainName = domain[1].Split('.')[0];
+                        string domainExtension = domain[1].Split('.')[1];
+                        return validDomainNames.Contains(domainName) && validDomainExtensions.Contains(domainExtension);
+                    }
+                    catch
+                    {
+                        return false;
+                    }
                 }
             }
-            else
+        }
+
+        public static bool HasNumbers(string str)
+        {
+            string numbers = "0123456789";
+            foreach (char a in str)
             {
-                try
+                foreach (char b in numbers)
                 {
-                    string[] domain = str.Split('@');
-                    string domainName = domain[1].Split('.')[0];
-                    string domainExtension = domain[1].Split('.')[1];
-                    return validDomainNames.Contains(domainName) && validDomainExtensions.Contains(domainExtension);
-                }
-                catch
-                {
-                    return false;
+                    if (a == b)
+                    {
+                        return true;
+                    }
                 }
             }
+            return false;
         }
-    }
 
-    public static bool HasNumbers(string str)
-    {
-        string numbers = "0123456789";
-        foreach (char a in str)
+        public static bool HasSymbols(string str)
         {
-            foreach (char b in numbers)
+            string symbols = "~`!@#$%^&*()_+-=[]{}\\|'\";:,.<>/?";
+            foreach (char a in str)
             {
-                if (a == b)
+                foreach (char b in symbols)
+                {
+                    if (a == b)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool HasSpaces(string str)
+        {
+            foreach (char a in str)
+            {
+                if (a == ' ')
                 {
                     return true;
                 }
             }
+            return false;
         }
-        return false;
-    }
-
-    public static bool HasSymbols(string str)
-    {
-        string symbols = "~`!@#$%^&*()_+-=[]{}\\|'\";:,.<>/?";
-        foreach (char a in str)
-        {
-            foreach (char b in symbols)
-            {
-                if (a == b)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public static bool HasSpaces(string str)
-    {
-        foreach (char a in str)
-        {
-            if (a == ' ')
-            {
-                return true;
-            }
-        }
-        return false;
     }
 }
