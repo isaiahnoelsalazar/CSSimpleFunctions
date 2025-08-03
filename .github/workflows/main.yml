@@ -32,8 +32,8 @@ jobs:
 # Build/pack the project
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 7.0.x
+      # with:
+        # dotnet-version: 7.0.x
  
     - name: Build and Pack NuGet package with versioning
       run: dotnet pack ${{ vars.CS_PROJ_PATH }} -p:Version='${{ steps.gitversion.outputs.SemVer }}' -c Release
