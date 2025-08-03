@@ -28,7 +28,7 @@ namespace CSSimpleFunctions
                 try
                 {
                     FileStream zip = File.Create("python-3.12.9-embed-win32.zip");
-                    Assembly.GetExecutingAssembly().GetManifestResourceStream("mywebsite_nugetpackage.python-3.12.9-embed-win32.zip").CopyTo(zip);
+                    Assembly.GetExecutingAssembly().GetManifestResourceStream("CSSimpleFunctions.python-3.12.9-embed-win32.zip").CopyTo(zip);
                     zip.Close();
                 }
                 catch
@@ -79,7 +79,7 @@ namespace CSSimpleFunctions
                         ZipFile.ExtractToDirectory(zipPath1, extractPath1);
 
                         FileStream sitecustomize = File.Create("python3_12\\sitecustomize.py");
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("mywebsite_nugetpackage.sitecustomize.py").CopyTo(sitecustomize);
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("CSSimpleFunctions.sitecustomize.py").CopyTo(sitecustomize);
                         sitecustomize.Close();
                     }
                     catch
@@ -207,7 +207,7 @@ namespace CSSimpleFunctions
                 try
                 {
                     FileStream zip = File.Create("python-3.12.9-embed-win32.zip");
-                    Assembly.GetExecutingAssembly().GetManifestResourceStream("mywebsite_nugetpackage.python-3.12.9-embed-win32.zip").CopyTo(zip);
+                    Assembly.GetExecutingAssembly().GetManifestResourceStream("CSSimpleFunctions.python-3.12.9-embed-win32.zip").CopyTo(zip);
                     zip.Close();
                 }
                 catch
@@ -258,7 +258,7 @@ namespace CSSimpleFunctions
                         ZipFile.ExtractToDirectory(zipPath1, extractPath1);
 
                         FileStream sitecustomize = File.Create("python3_12\\sitecustomize.py");
-                        Assembly.GetExecutingAssembly().GetManifestResourceStream("mywebsite_nugetpackage.sitecustomize.py").CopyTo(sitecustomize);
+                        Assembly.GetExecutingAssembly().GetManifestResourceStream("CSSimpleFunctions.sitecustomize.py").CopyTo(sitecustomize);
                         sitecustomize.Close();
                     }
                     catch
