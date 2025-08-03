@@ -22,8 +22,12 @@
   <!--</ItemGroup>-->
 
   <ItemGroup>
-    <EmbeddedResource Include="python-3.12.9-embed-win32.zip" />
-    <EmbeddedResource Include="sitecustomize.py" />
+	<EmbeddedResource Include="python-3.12.9-embed-win32.zip">
+	  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	</EmbeddedResource>
+	<EmbeddedResource Include="sitecustomize.py">
+	  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	</EmbeddedResource>
   </ItemGroup>
 
 </Project>
