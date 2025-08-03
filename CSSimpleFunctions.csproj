@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+	<!--<TargetFramework>net8.0</TargetFramework>-->
+	<TargetFrameworks>net6.0;net45</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<RepositoryUrl>https://github.com/isaiahnoelsalazar/CSSimpleFunctions</RepositoryUrl>
