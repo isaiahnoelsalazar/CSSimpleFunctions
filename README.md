@@ -38,6 +38,42 @@ Check.HasSymbols("Sample text!"); // returns true
 Check.HasSpaces("Sample_text"); // returns false
 Check.HasSpaces("Sample text"); // returns true
 ```
+### Email.AddValidDomainName
+- adds a valid domain name to the list of valid domain names
+```csharp
+Check.Email.AddValidDomainName("gmail");
+```
+### Email.AddValidDomainExtension
+- adds a valid domain extension to the list of valid domain extensions
+```csharp
+Check.Email.AddValidDomainExtension("com");
+```
+### Email.AddValidDomain
+- adds a valid domain to the list of valid domains
+```csharp
+Check.Email.AddValidDomain("gmail.com");
+```
+### Email.ShouldUseFullDomain
+- sets the checker to use full domains or not
+```csharp
+Check.Email.ShouldUseFullDomain();
+
+// Or
+
+Check.Email.ShouldUseFullDomain(true);
+
+// Or
+
+Check.Email.ShouldUseFullDomain(false);
+```
+### Email.IsValid
+- checks a String if it is a valid email or not
+- will return false if the email domain is not listed in the valid domains
+```csharp
+Check.Email.IsValid("test@gmail.com"); // returns true
+Check.Email.IsValid("test@outlook.com"); // returns false
+Check.Email.IsValid("test@asd.com"); // returns false
+```
 ## Convert
 ### ToBase64
 - will convert a String to its Base64 version
