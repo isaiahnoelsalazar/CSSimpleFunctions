@@ -97,28 +97,28 @@ PyCS pycs = new PyCS();
 PyCS pycs = new PyCS(true); // default value
 PyCS pycs = new PyCS(false); // no console messages
 ```
-### pip
+### Pip
 - starts a pip install command
 ```csharp
-pycs.pip(new string[]{"opencv-python"});
+pycs.Pip(new string[]{"opencv-python"});
 ```
-### run
+### Run
 - runs a given Python script in a string value
 ```csharp
-pycs.run("print('Hello')"); // prints "Hello" in the console
+pycs.Run("print('Hello')"); // prints "Hello" in the console
 ```
-### runFile
+### RunFile
 - runs a given Python script in a given file path
 ```csharp
-pycs.run("scripts/hello.py"); // prints "Hello" in the console
+pycs.RunFile("scripts/hello.py"); // prints "Hello" in the console
 ```
-### backRun
+### GetOutput
 - runs a given Python script in a string value and returns the console message in a string value
 ```csharp
-string text = pycs.backRun("print('Hello')"); // returns "Hello"
+string text = pycs.GetOutput("print('Hello')"); // returns "Hello"
 ```
-### backRunFile
+### GetFileOutput
 - runs a given Python script in a given file path and returns the console message in a string value
 ```csharp
-string text = pycs.backRunFile("scripts/hello.py"); // returns "Hello"
+string text = pycs.GetFileOutput("scripts/hello.py"); // returns "Hello"
 ```

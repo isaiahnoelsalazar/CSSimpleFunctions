@@ -373,7 +373,7 @@ namespace CSSimpleFunctions
             }
         }
 
-        public void pip(string[] args)
+        public void Pip(string[] args)
         {
             ProcessStartInfo run0 = new ProcessStartInfo();
             run0.FileName = "python3_12\\Scripts\\pip.exe";
@@ -386,12 +386,15 @@ namespace CSSimpleFunctions
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    Console.WriteLine(result);
+                    if (console)
+                    {
+                        Console.WriteLine(result);
+                    }
                 }
             }
         }
 
-        public void run(string script)
+        public void Run(string script)
         {
             File.Create("python3_12\\main.py").Close();
             File.WriteAllText("python3_12\\main.py", script);
@@ -412,7 +415,7 @@ namespace CSSimpleFunctions
             }
         }
 
-        public void runFile(string filePath)
+        public void RunFile(string filePath)
         {
             ProcessStartInfo run0 = new ProcessStartInfo();
             run0.FileName = "python3_12\\python.exe";
@@ -430,7 +433,7 @@ namespace CSSimpleFunctions
             }
         }
 
-        public string backRun(string script)
+        public string GetOutput(string script)
         {
             File.Create("python3_12\\main.py").Close();
             File.WriteAllText("python3_12\\main.py", script);
@@ -451,7 +454,7 @@ namespace CSSimpleFunctions
             }
         }
 
-        public string backRunFile(string filePath)
+        public string GetFileOutput(string filePath)
         {
             ProcessStartInfo run0 = new ProcessStartInfo();
             run0.FileName = "python3_12\\python.exe";
