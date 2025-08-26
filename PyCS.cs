@@ -415,6 +415,30 @@ namespace CSSimpleFunctions
             }
         }
 
+        public void Run(string script, bool showConsole)
+        {
+            File.Create("python3_12\\main.py").Close();
+            File.WriteAllText("python3_12\\main.py", script);
+
+            ProcessStartInfo run0 = new ProcessStartInfo();
+            run0.FileName = "python3_12\\python.exe";
+            run0.Arguments = "python3_12\\main.py";
+            run0.UseShellExecute = false;
+            if (!showConsole)
+            {
+                run0.RedirectStandardOutput = true;
+                run0.CreateNoWindow = true;
+                using (Process process = Process.Start(run0))
+                {
+                    using (StreamReader reader = process.StandardOutput)
+                    {
+                        string result = reader.ReadToEnd();
+                        Console.WriteLine(result);
+                    }
+                }
+            }
+        }
+
         public void RunFile(string filePath)
         {
             ProcessStartInfo run0 = new ProcessStartInfo();
@@ -429,6 +453,27 @@ namespace CSSimpleFunctions
                 {
                     string result = reader.ReadToEnd();
                     Console.WriteLine(result);
+                }
+            }
+        }
+
+        public void RunFile(string filePath, bool showConsole)
+        {
+            ProcessStartInfo run0 = new ProcessStartInfo();
+            run0.FileName = "python3_12\\python.exe";
+            run0.Arguments = filePath;
+            run0.UseShellExecute = false;
+            if (!showConsole)
+            {
+                run0.RedirectStandardOutput = true;
+                run0.CreateNoWindow = true;
+                using (Process process = Process.Start(run0))
+                {
+                    using (StreamReader reader = process.StandardOutput)
+                    {
+                        string result = reader.ReadToEnd();
+                        Console.WriteLine(result);
+                    }
                 }
             }
         }
