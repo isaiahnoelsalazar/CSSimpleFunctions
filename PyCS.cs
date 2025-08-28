@@ -8,7 +8,7 @@ namespace CSSimpleFunctions
 {
     public class PyCS
     {
-        bool console = true, exist1 = false, exist2 = false, exist3 = false;
+        bool console = true, exist1 = false, exist2 = false, exist3 = false, RunDone = false;
 
         void AllowTLS12()
         {
@@ -373,6 +373,11 @@ namespace CSSimpleFunctions
             }
         }
 
+        public bool IsRunDone()
+        {
+            return RunDone;
+        }
+
         public void Pip(string[] args)
         {
             ProcessStartInfo run0 = new ProcessStartInfo();
@@ -396,6 +401,10 @@ namespace CSSimpleFunctions
 
         public void Run(string script)
         {
+            if (RunDone)
+            {
+                RunDone = false;
+            }
             File.Create("python3_12\\main.py").Close();
             File.WriteAllText("python3_12\\main.py", script);
 
@@ -411,12 +420,17 @@ namespace CSSimpleFunctions
                 {
                     string result = reader.ReadToEnd();
                     Console.WriteLine(result);
+                    RunDone = true;
                 }
             }
         }
 
         public void Run(string script, bool showConsole)
         {
+            if (RunDone)
+            {
+                RunDone = false;
+            }
             File.Create("python3_12\\main.py").Close();
             File.WriteAllText("python3_12\\main.py", script);
 
@@ -434,6 +448,7 @@ namespace CSSimpleFunctions
                     {
                         string result = reader.ReadToEnd();
                         Console.WriteLine(result);
+                        RunDone = true;
                     }
                 }
             }
@@ -441,6 +456,10 @@ namespace CSSimpleFunctions
 
         public void RunFile(string filePath)
         {
+            if (RunDone)
+            {
+                RunDone = false;
+            }
             ProcessStartInfo run0 = new ProcessStartInfo();
             run0.FileName = "python3_12\\python.exe";
             run0.Arguments = filePath;
@@ -453,12 +472,17 @@ namespace CSSimpleFunctions
                 {
                     string result = reader.ReadToEnd();
                     Console.WriteLine(result);
+                    RunDone = true;
                 }
             }
         }
 
         public void RunFile(string filePath, bool showConsole)
         {
+            if (RunDone)
+            {
+                RunDone = false;
+            }
             ProcessStartInfo run0 = new ProcessStartInfo();
             run0.FileName = "python3_12\\python.exe";
             run0.Arguments = filePath;
@@ -473,6 +497,7 @@ namespace CSSimpleFunctions
                     {
                         string result = reader.ReadToEnd();
                         Console.WriteLine(result);
+                        RunDone = true;
                     }
                 }
             }
@@ -480,6 +505,10 @@ namespace CSSimpleFunctions
 
         public string GetOutput(string script)
         {
+            if (RunDone)
+            {
+                RunDone = false;
+            }
             File.Create("python3_12\\main.py").Close();
             File.WriteAllText("python3_12\\main.py", script);
 
@@ -494,6 +523,7 @@ namespace CSSimpleFunctions
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
+                    RunDone = true;
                     return result;
                 }
             }
@@ -501,6 +531,10 @@ namespace CSSimpleFunctions
 
         public string GetFileOutput(string filePath)
         {
+            if (RunDone)
+            {
+                RunDone = false;
+            }
             ProcessStartInfo run0 = new ProcessStartInfo();
             run0.FileName = "python3_12\\python.exe";
             run0.Arguments = filePath;
@@ -512,6 +546,7 @@ namespace CSSimpleFunctions
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
+                    RunDone = true;
                     return result;
                 }
             }
