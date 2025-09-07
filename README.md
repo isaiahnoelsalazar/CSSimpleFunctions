@@ -38,6 +38,13 @@ Check.HasSymbols("Sample text!"); // returns true
 Check.HasSpaces("Sample_text"); // returns false
 Check.HasSpaces("Sample text"); // returns true
 ```
+### IsAValidPhilippineMobileNumber
+- will check a String if it is a valid Philippine mobile number
+- returns a boolean value
+```csharp
+Check.IsAValidPhilippineMobileNumber("+15551234567"); // returns false
+Check.IsAValidPhilippineMobileNumber("09171234567"); // returns true
+```
 ### Email.AddValidDomainName
 - adds a valid domain name to the list of valid domain names
 ```csharp

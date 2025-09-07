@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace CSSimpleFunctions
 {
@@ -64,6 +65,12 @@ namespace CSSimpleFunctions
                     }
                 }
             }
+        }
+
+        public static bool IsAValidPhilippineMobileNumber(string str)
+        {
+            string pattern = @"^(?:09|\+639|639)\d{9}$";
+            return Regex.IsMatch(Regex.Replace(str, @"[\s\-\(\)]", ""), pattern);
         }
 
         public static bool HasNumbers(string str)
