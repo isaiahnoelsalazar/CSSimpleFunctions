@@ -75,15 +75,16 @@ namespace CSSimpleFunctions
 
         public static bool IsAllNumbers(string str)
         {
+            bool value = true;
             string numbers = "0123456789";
             foreach (char a in str)
             {
                 if (!numbers.Contains(a))
                 {
-                    return false;
+                    value = false;
                 }
             }
-            return true;
+            return value;
         }
 
         public static bool HasNumbers(string str)
