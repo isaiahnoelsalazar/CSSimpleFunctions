@@ -73,6 +73,19 @@ namespace CSSimpleFunctions
             return Regex.IsMatch(Regex.Replace(str, @"[\s\-\(\)]", ""), pattern);
         }
 
+        public static bool IsAllNumbers(string str)
+        {
+            string numbers = "0123456789";
+            foreach (char a in str)
+            {
+                if (!numbers.Contains(a))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public static bool HasNumbers(string str)
         {
             string numbers = "0123456789";
