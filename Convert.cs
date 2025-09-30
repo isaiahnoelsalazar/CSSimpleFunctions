@@ -4,6 +4,16 @@ namespace CSSimpleFunctions
 {
     public class Convert
     {
+        public static string Reverse(string str)
+        {
+            string temp = string.Empty;
+            for (int a = str.Length - 1; a > -1; a--)
+            {
+                temp += str.ElementAt(a);
+            }
+            return temp;
+        }
+
         public static string ToBase64(string str)
         {
             return System.Convert.ToBase64String(Encoding.UTF8.GetBytes(str));
