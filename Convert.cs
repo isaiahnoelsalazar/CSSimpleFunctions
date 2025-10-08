@@ -24,6 +24,16 @@ namespace CSSimpleFunctions
             return Encoding.UTF8.GetString(System.Convert.FromBase64String(str));
         }
 
+        public static byte[] ToByteArray(string str)
+        {
+            return Encoding.UTF8.GetBytes(str);
+        }
+
+        public static string FromByteArray(byte[] array)
+        {
+            return Encoding.UTF8.GetString(array);
+        }
+
         // I have not tested the functions below. Proceed with caution.
 
         public static string FromHex(string str)
