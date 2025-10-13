@@ -81,7 +81,7 @@ namespace CSSimpleFunctions
 
                         using (FileStream fs = File.OpenWrite("python3_12\\python312._pth"))
                         {
-                            string toWrite = "python312\r\n.\r\n\r\n# Uncomment to run site.main() automatically\r\nimport site\r\n";
+                            string toWrite = "python312.zip\r\n.\r\n\r\n# Uncomment to run site.main() automatically\r\nimport site\r\n";
                             fs.Write(Encoding.UTF8.GetBytes(toWrite), 0, Encoding.UTF8.GetBytes(toWrite).Length);
                         }
 
