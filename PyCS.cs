@@ -399,6 +399,27 @@ namespace CSSimpleFunctions
             }
         }
 
+        public void PipLocal(string[] args)
+        {
+            ProcessStartInfo run0 = new ProcessStartInfo();
+            run0.FileName = "python3_12\\Scripts\\pip.exe";
+            run0.Arguments = "install " + string.Join(" ", args) + " --no-index --find-links /";
+            run0.UseShellExecute = false;
+            run0.RedirectStandardOutput = true;
+            run0.CreateNoWindow = true;
+            using (Process process = Process.Start(run0))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd();
+                    if (console)
+                    {
+                        Console.WriteLine(result);
+                    }
+                }
+            }
+        }
+
         public void Run(string script)
         {
             if (RunDone)
