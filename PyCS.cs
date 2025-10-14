@@ -279,48 +279,48 @@ namespace CSSimpleFunctions
             }
         }
 
-        public void Run(string script, bool showConsole)
-        {
-            if (RunDone)
-            {
-                RunDone = false;
-            }
-            File.Create("python3_12\\main.py").Close();
-            File.WriteAllText("python3_12\\main.py", script);
+        //public void Run(string script, bool showConsole)
+        //{
+        //    if (RunDone)
+        //    {
+        //        RunDone = false;
+        //    }
+        //    File.Create("python3_12\\main.py").Close();
+        //    File.WriteAllText("python3_12\\main.py", script);
 
-            ProcessStartInfo run0 = new ProcessStartInfo();
-            run0.FileName = "python3_12\\python.exe";
-            run0.Arguments = "python3_12\\main.py";
-            run0.UseShellExecute = false;
-            if (!showConsole)
-            {
-                run0.RedirectStandardOutput = true;
-                run0.CreateNoWindow = true;
-                using (Process process = Process.Start(run0))
-                {
-                    using (StreamReader reader = process.StandardOutput)
-                    {
-                        string result = reader.ReadToEnd();
-                        Console.WriteLine(result);
-                        RunDone = true;
-                    }
-                }
-            }
-            else
-            {
-                run0.RedirectStandardOutput = false;
-                run0.CreateNoWindow = false;
-                using (Process process = Process.Start(run0))
-                {
-                    using (StreamReader reader = process.StandardOutput)
-                    {
-                        string result = reader.ReadToEnd();
-                        Console.WriteLine(result);
-                        RunDone = true;
-                    }
-                }
-            }
-        }
+        //    ProcessStartInfo run0 = new ProcessStartInfo();
+        //    run0.FileName = "python3_12\\python.exe";
+        //    run0.Arguments = "python3_12\\main.py";
+        //    run0.UseShellExecute = false;
+        //    if (!showConsole)
+        //    {
+        //        run0.RedirectStandardOutput = true;
+        //        run0.CreateNoWindow = true;
+        //        using (Process process = Process.Start(run0))
+        //        {
+        //            using (StreamReader reader = process.StandardOutput)
+        //            {
+        //                string result = reader.ReadToEnd();
+        //                Console.WriteLine(result);
+        //                RunDone = true;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        run0.RedirectStandardOutput = false;
+        //        run0.CreateNoWindow = false;
+        //        using (Process process = Process.Start(run0))
+        //        {
+        //            using (StreamReader reader = process.StandardOutput)
+        //            {
+        //                string result = reader.ReadToEnd();
+        //                Console.WriteLine(result);
+        //                RunDone = true;
+        //            }
+        //        }
+        //    }
+        //}
 
         public void RunFile(string filePath)
         {
@@ -345,45 +345,45 @@ namespace CSSimpleFunctions
             }
         }
 
-        public void RunFile(string filePath, bool showConsole)
-        {
-            if (RunDone)
-            {
-                RunDone = false;
-            }
-            ProcessStartInfo run0 = new ProcessStartInfo();
-            run0.FileName = "python3_12\\python.exe";
-            run0.Arguments = filePath;
-            run0.UseShellExecute = false;
-            if (!showConsole)
-            {
-                run0.RedirectStandardOutput = true;
-                run0.CreateNoWindow = true;
-                using (Process process = Process.Start(run0))
-                {
-                    using (StreamReader reader = process.StandardOutput)
-                    {
-                        string result = reader.ReadToEnd();
-                        Console.WriteLine(result);
-                        RunDone = true;
-                    }
-                }
-            }
-            else
-            {
-                run0.RedirectStandardOutput = false;
-                run0.CreateNoWindow = false;
-                using (Process process = Process.Start(run0))
-                {
-                    using (StreamReader reader = process.StandardOutput)
-                    {
-                        string result = reader.ReadToEnd();
-                        Console.WriteLine(result);
-                        RunDone = true;
-                    }
-                }
-            }
-        }
+        //public void RunFile(string filePath, bool showConsole)
+        //{
+        //    if (RunDone)
+        //    {
+        //        RunDone = false;
+        //    }
+        //    ProcessStartInfo run0 = new ProcessStartInfo();
+        //    run0.FileName = "python3_12\\python.exe";
+        //    run0.Arguments = filePath;
+        //    run0.UseShellExecute = false;
+        //    if (!showConsole)
+        //    {
+        //        run0.RedirectStandardOutput = true;
+        //        run0.CreateNoWindow = true;
+        //        using (Process process = Process.Start(run0))
+        //        {
+        //            using (StreamReader reader = process.StandardOutput)
+        //            {
+        //                string result = reader.ReadToEnd();
+        //                Console.WriteLine(result);
+        //                RunDone = true;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        run0.RedirectStandardOutput = false;
+        //        run0.CreateNoWindow = false;
+        //        using (Process process = Process.Start(run0))
+        //        {
+        //            using (StreamReader reader = process.StandardOutput)
+        //            {
+        //                string result = reader.ReadToEnd();
+        //                Console.WriteLine(result);
+        //                RunDone = true;
+        //            }
+        //        }
+        //    }
+        //}
 
         public string GetOutput(string script)
         {

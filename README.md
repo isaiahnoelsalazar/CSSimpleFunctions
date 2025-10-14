@@ -15,6 +15,7 @@ dotnet add package CSSimpleFunctions --version [latest release version]
 - [Check](#check)
 - [Convert](#convert)
 - [PyCS](#pycs)
+- [SimpleFileHandler](#simplefilehandler)
 
 ## Check
 ### HasNumbers
@@ -82,6 +83,11 @@ Check.Email.IsValid("test@outlook.com"); // returns false
 Check.Email.IsValid("test@asd.com"); // returns false
 ```
 ## Convert
+### Reverse
+- will reverse a String
+```csharp
+Convert.Reverse("Sample text"); // returns "txet elpmaS"
+```
 ### ToBase64
 - will convert a String to its Base64 version
 - returns a String
@@ -94,7 +100,21 @@ Convert.ToBase64("Sample text"); // returns "U2FtcGxlIHRleHQ="
 ```csharp
 Convert.FromBase64("U2FtcGxlIHRleHQ="); // returns "Sample text"
 ```
+### ToByteArray
+- will convert a String to a byte array
+- returns a byte array
+```csharp
+byte[] byteArray = Convert.ToByteArray("Sample text");
+```
+### FromByteArray
+- will convert a byte array to a String
+- returns a String
+```csharp
+byte[] byteArray = Convert.ToByteArray("Sample text");
+string temp = Convert.FromByteArray(byteArray);
+```
 ## PyCS
+Run Python 3.12 scripts and commands from C#
 ### Initialization
 ```csharp
 PyCS pycs = new PyCS();
@@ -107,7 +127,19 @@ PyCS pycs = new PyCS(false); // no console messages
 ### Pip
 - starts a pip install command
 ```csharp
-pycs.Pip(new string[]{"opencv-python"});
+pycs.Pip(new string[]
+{
+	"numpy"
+});
+```
+### PipLocal
+- starts a pip install command for already downloaded .whl files
+```csharp
+pycs.PipLocal(new string[]
+{
+	"numpy-2.2.6-cp312-cp312-win32.whl",
+	"opencv_python-4.12.0.88-cp37-abi3-win32.whl"
+});
 ```
 ### Run
 - runs a given Python script in a string value
@@ -128,4 +160,20 @@ string text = pycs.GetOutput("print('Hello')"); // returns "Hello"
 - runs a given Python script in a given file path and returns the console message in a string value
 ```csharp
 string text = pycs.GetFileOutput("scripts/hello.py"); // returns "Hello"
+```
+## SimpleFileHandler
+### Write
+- writes text to a file
+```csharp
+SimpleFileHandler.Write("path/to/file.txt", "Sample text");
+```
+### Read
+- reads text from a file
+```csharp
+string text = SimpleFileHandler.Read("path/to/file.txt");
+```
+### Append
+- appends text to a file
+```csharp
+SimpleFileHandler.Append("path/to/file.txt", "Sample text 2");
 ```
