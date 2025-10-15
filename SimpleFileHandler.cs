@@ -22,32 +22,8 @@ namespace CSSimpleFunctions
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void ProjectToLocation(Assembly CallingAssembly, string FileName)
+        public static void ProjectToLocation(Assembly ExecutingAssembly, string FileName)
         {
-            try
-            {
-                Console.WriteLine(CallingAssembly.EntryPoint.DeclaringType.Namespace);
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
-            try
-            {
-                Console.WriteLine(Assembly.GetCallingAssembly().EntryPoint.DeclaringType.Namespace);
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
-            try
-            {
-                Console.WriteLine(Assembly.GetEntryAssembly().EntryPoint.DeclaringType.Namespace);
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
             try
             {
                 if (!Path.GetDirectoryName(FileName).Equals(string.Empty) && !Directory.Exists(Path.GetDirectoryName(FileName)))
@@ -55,7 +31,7 @@ namespace CSSimpleFunctions
                     Directory.CreateDirectory(Path.GetDirectoryName(FileName));
                 }
                 FileStream ProjectFileStream = File.Create(FileName);
-                Assembly.GetExecutingAssembly().GetManifestResourceStream(CallingAssembly.EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
+                ExecutingAssembly.GetManifestResourceStream(ExecutingAssembly.EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
                 ProjectFileStream.Close();
             }
             catch (Exception exception)
@@ -66,7 +42,7 @@ namespace CSSimpleFunctions
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void ProjectToLocation(Assembly CallingAssembly, string FileName, string FilePath)
+        public static void ProjectToLocation(Assembly ExecutingAssembly, string FileName, string FilePath)
         {
             try
             {
@@ -75,7 +51,7 @@ namespace CSSimpleFunctions
                     Directory.CreateDirectory(FilePath);
                 }
                 FileStream ProjectFileStream = File.Create(Path.Combine(FilePath, Path.GetFileName(FileName)));
-                Assembly.GetExecutingAssembly().GetManifestResourceStream(CallingAssembly.EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
+                ExecutingAssembly.GetManifestResourceStream(ExecutingAssembly.EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
                 ProjectFileStream.Close();
             }
             catch
