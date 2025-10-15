@@ -31,7 +31,7 @@ namespace CSSimpleFunctions
                     Directory.CreateDirectory(Path.GetDirectoryName(FileName));
                 }
                 FileStream ProjectFileStream = File.Create(FileName);
-                Assembly.GetExecutingAssembly().GetManifestResourceStream(Assembly.GetCallingAssembly().EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
+                Assembly.GetExecutingAssembly().GetManifestResourceStream(Assembly.GetExecutingAssembly().EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
                 ProjectFileStream.Close();
             }
             catch
@@ -50,7 +50,7 @@ namespace CSSimpleFunctions
                     Directory.CreateDirectory(FilePath);
                 }
                 FileStream ProjectFileStream = File.Create(Path.Combine(FilePath, Path.GetFileName(FileName)));
-                Assembly.GetExecutingAssembly().GetManifestResourceStream(Assembly.GetCallingAssembly().EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
+                Assembly.GetExecutingAssembly().GetManifestResourceStream(Assembly.GetExecutingAssembly().EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
                 ProjectFileStream.Close();
             }
             catch
