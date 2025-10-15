@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace CSSimpleFunctions
 {
@@ -20,6 +21,7 @@ namespace CSSimpleFunctions
             File.AppendAllText(FilePath, Content);
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static void ProjectToLocation(string FileName)
         {
             try
@@ -38,6 +40,7 @@ namespace CSSimpleFunctions
             }
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static void ProjectToLocation(string FileName, string FilePath)
         {
             try
