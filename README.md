@@ -177,3 +177,12 @@ string text = SimpleFileHandler.Read("path/to/file.txt");
 ```csharp
 SimpleFileHandler.Append("path/to/file.txt", "Sample text 2");
 ```
+### ProjectToLocation
+- extract a file from the project to a given location
+```csharp
+SimpleFileHandler.ProjectToLocation("SampleClass.cs");
+
+// Or
+
+SimpleFileHandler.ProjectToLocation("SampleClass.cs", "path/to/destination");
+```

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Reflection;
 
 namespace CSSimpleFunctions
 {
@@ -17,6 +18,42 @@ namespace CSSimpleFunctions
         public static void Append(string FilePath, string Content)
         {
             File.AppendAllText(FilePath, Content);
+        }
+
+        public static void ProjectToLocation(string FileName)
+        {
+            try
+            {
+                if (!Path.GetDirectoryName(FileName).Equals(string.Empty) && !Directory.Exists(Path.GetDirectoryName(FileName)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(FileName));
+                }
+                FileStream ProjectFileStream = File.Create(FileName);
+                Assembly.GetExecutingAssembly().GetManifestResourceStream(Assembly.GetCallingAssembly().EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
+                ProjectFileStream.Close();
+            }
+            catch
+            {
+                Console.WriteLine("Cannot copy project file. Please make sure the file's build action is set to 'Embedded Resource'.");
+            }
+        }
+
+        public static void ProjectToLocation(string FileName, string FilePath)
+        {
+            try
+            {
+                if (!Directory.Exists(FilePath))
+                {
+                    Directory.CreateDirectory(FilePath);
+                }
+                FileStream ProjectFileStream = File.Create(Path.Combine(FilePath, Path.GetFileName(FileName)));
+                Assembly.GetExecutingAssembly().GetManifestResourceStream(Assembly.GetCallingAssembly().EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
+                ProjectFileStream.Close();
+            }
+            catch
+            {
+                Console.WriteLine("Cannot copy project file. Please make sure the file's build action is set to 'Embedded Resource'.");
+            }
         }
     }
 }
