@@ -180,9 +180,9 @@ SimpleFileHandler.Append("path/to/file.txt", "Sample text 2");
 ### ProjectToLocation
 - extract a file from the project to a given location
 ```csharp
-SimpleFileHandler.ProjectToLocation(Assembly.GetCallingAssembly(), "SampleClass.cs");
+SimpleFileHandler.ProjectToLocation(Assembly.GetExecutingAssembly(), "SampleClass.cs");
 
 // Or
 
-SimpleFileHandler.ProjectToLocation(Assembly.GetCallingAssembly(), "SampleClass.cs", "path/to/destination");
+SimpleFileHandler.ProjectToLocation(Assembly.GetExecutingAssembly(), "SampleClass.cs", "path/to/destination");
 ```
