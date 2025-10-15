@@ -26,6 +26,30 @@ namespace CSSimpleFunctions
         {
             try
             {
+                Console.WriteLine(CallingAssembly.EntryPoint.DeclaringType.Namespace);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            try
+            {
+                Console.WriteLine(Assembly.GetCallingAssembly().EntryPoint.DeclaringType.Namespace);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            try
+            {
+                Console.WriteLine(Assembly.GetEntryAssembly().EntryPoint.DeclaringType.Namespace);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            try
+            {
                 if (!Path.GetDirectoryName(FileName).Equals(string.Empty) && !Directory.Exists(Path.GetDirectoryName(FileName)))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(FileName));
@@ -34,9 +58,10 @@ namespace CSSimpleFunctions
                 Assembly.GetExecutingAssembly().GetManifestResourceStream(CallingAssembly.EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
                 ProjectFileStream.Close();
             }
-            catch
+            catch (Exception exception)
             {
                 Console.WriteLine("Cannot copy project file. Please make sure the file's build action is set to 'Embedded Resource'.");
+                Console.WriteLine(exception.Message);
             }
         }
 
