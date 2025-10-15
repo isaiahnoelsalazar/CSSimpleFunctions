@@ -34,10 +34,9 @@ namespace CSSimpleFunctions
                 ExecutingAssembly.GetManifestResourceStream(ExecutingAssembly.EntryPoint.DeclaringType.Namespace + "." + Path.GetFileName(FileName)).CopyTo(ProjectFileStream);
                 ProjectFileStream.Close();
             }
-            catch (Exception exception)
+            catch
             {
                 Console.WriteLine("Cannot copy project file. Please make sure the file's build action is set to 'Embedded Resource'.");
-                Console.WriteLine(exception.Message);
             }
         }
 
