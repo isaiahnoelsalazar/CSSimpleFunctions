@@ -124,6 +124,11 @@ PyCS pycs = new PyCS();
 PyCS pycs = new PyCS(true); // default value
 PyCS pycs = new PyCS(false); // no console messages
 ```
+### InstallPip
+- download and install pip for PyCS
+```csharp
+pycs.InstallPip();
+```
 ### Pip
 - starts a pip install command
 ```csharp
