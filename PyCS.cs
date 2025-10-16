@@ -109,6 +109,10 @@ namespace CSSimpleFunctions
                     }
                 }
             }
+        }
+
+        public void InstallPip()
+        {
             try
             {
                 if (!File.Exists("python3_12\\get-pip.py"))
