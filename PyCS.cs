@@ -79,7 +79,7 @@ namespace CSSimpleFunctions
                         string extractPath = "python3_13";
                         ZipFile.ExtractToDirectory(zipPath, extractPath);
 
-                        using (FileStream fs = File.OpenWrite("python3_13\\python3_13._pth"))
+                        using (FileStream fs = File.OpenWrite("python3_13\\python313._pth"))
                         {
                             string toWrite = "python313.zip\r\n.\r\n\r\n# Uncomment to run site.main() automatically\r\nimport site\r\n";
                             fs.Write(Encoding.UTF8.GetBytes(toWrite), 0, Encoding.UTF8.GetBytes(toWrite).Length);
