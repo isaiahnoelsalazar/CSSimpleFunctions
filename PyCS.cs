@@ -217,6 +217,7 @@ namespace CSSimpleFunctions
             run0.Arguments = "install " + string.Join(" ", args);
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
+            run0.CreateNoWindow = console;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
@@ -237,6 +238,7 @@ namespace CSSimpleFunctions
             run0.Arguments = "install --upgrade " + string.Join(" ", args);
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
+            run0.CreateNoWindow = console;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
@@ -257,6 +259,7 @@ namespace CSSimpleFunctions
             run0.Arguments = "install " + string.Join(" ", args) + " --no-index --find-links /";
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
+            run0.CreateNoWindow = console;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
@@ -280,6 +283,7 @@ namespace CSSimpleFunctions
             run0.Arguments = "python3_13\\main.py";
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
+            run0.CreateNoWindow = console;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
@@ -297,6 +301,7 @@ namespace CSSimpleFunctions
             run0.Arguments = filePath;
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
+            run0.CreateNoWindow = console;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
@@ -317,6 +322,7 @@ namespace CSSimpleFunctions
             run0.Arguments = "python3_13\\main.py";
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
+            run0.CreateNoWindow = console;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
@@ -334,6 +340,7 @@ namespace CSSimpleFunctions
             run0.Arguments = filePath;
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
+            run0.CreateNoWindow = console;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
