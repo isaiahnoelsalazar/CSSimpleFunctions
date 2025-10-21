@@ -8,7 +8,7 @@ namespace CSSimpleFunctions
 {
     public class PyCS
     {
-        bool console = true, exist1 = false, exist2 = false, exist3 = false, RunDone = false;
+        bool console = true, exist1 = false, exist2 = false, exist3 = false;
 
         void AllowTLS12()
         {
@@ -210,11 +210,6 @@ namespace CSSimpleFunctions
             }
         }
 
-        public bool IsRunDone()
-        {
-            return RunDone;
-        }
-
         public void Pip(string[] args)
         {
             ProcessStartInfo run0 = new ProcessStartInfo();
@@ -222,7 +217,26 @@ namespace CSSimpleFunctions
             run0.Arguments = "install " + string.Join(" ", args);
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
-            run0.CreateNoWindow = true;
+            using (Process process = Process.Start(run0))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd();
+                    if (console)
+                    {
+                        Console.WriteLine(result);
+                    }
+                }
+            }
+        }
+
+        public void PipUpgrade(string[] args)
+        {
+            ProcessStartInfo run0 = new ProcessStartInfo();
+            run0.FileName = "python3_12\\Scripts\\pip.exe";
+            run0.Arguments = "install --upgrade " + string.Join(" ", args);
+            run0.UseShellExecute = false;
+            run0.RedirectStandardOutput = true;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
@@ -243,7 +257,6 @@ namespace CSSimpleFunctions
             run0.Arguments = "install " + string.Join(" ", args) + " --no-index --find-links /";
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
-            run0.CreateNoWindow = true;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
@@ -259,10 +272,6 @@ namespace CSSimpleFunctions
 
         public void Run(string script)
         {
-            if (RunDone)
-            {
-                RunDone = false;
-            }
             File.Create("python3_12\\main.py").Close();
             File.WriteAllText("python3_12\\main.py", script);
 
@@ -271,130 +280,35 @@ namespace CSSimpleFunctions
             run0.Arguments = "python3_12\\main.py";
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
-            run0.CreateNoWindow = true;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
                     Console.WriteLine(result);
-                    RunDone = true;
                 }
             }
         }
 
-        //public void Run(string script, bool showConsole)
-        //{
-        //    if (RunDone)
-        //    {
-        //        RunDone = false;
-        //    }
-        //    File.Create("python3_12\\main.py").Close();
-        //    File.WriteAllText("python3_12\\main.py", script);
-
-        //    ProcessStartInfo run0 = new ProcessStartInfo();
-        //    run0.FileName = "python3_12\\python.exe";
-        //    run0.Arguments = "python3_12\\main.py";
-        //    run0.UseShellExecute = false;
-        //    if (!showConsole)
-        //    {
-        //        run0.RedirectStandardOutput = true;
-        //        run0.CreateNoWindow = true;
-        //        using (Process process = Process.Start(run0))
-        //        {
-        //            using (StreamReader reader = process.StandardOutput)
-        //            {
-        //                string result = reader.ReadToEnd();
-        //                Console.WriteLine(result);
-        //                RunDone = true;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        run0.RedirectStandardOutput = false;
-        //        run0.CreateNoWindow = false;
-        //        using (Process process = Process.Start(run0))
-        //        {
-        //            using (StreamReader reader = process.StandardOutput)
-        //            {
-        //                string result = reader.ReadToEnd();
-        //                Console.WriteLine(result);
-        //                RunDone = true;
-        //            }
-        //        }
-        //    }
-        //}
-
         public void RunFile(string filePath)
         {
-            if (RunDone)
-            {
-                RunDone = false;
-            }
             ProcessStartInfo run0 = new ProcessStartInfo();
             run0.FileName = "python3_12\\python.exe";
             run0.Arguments = filePath;
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
-            run0.CreateNoWindow = true;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
                     Console.WriteLine(result);
-                    RunDone = true;
                 }
             }
         }
 
-        //public void RunFile(string filePath, bool showConsole)
-        //{
-        //    if (RunDone)
-        //    {
-        //        RunDone = false;
-        //    }
-        //    ProcessStartInfo run0 = new ProcessStartInfo();
-        //    run0.FileName = "python3_12\\python.exe";
-        //    run0.Arguments = filePath;
-        //    run0.UseShellExecute = false;
-        //    if (!showConsole)
-        //    {
-        //        run0.RedirectStandardOutput = true;
-        //        run0.CreateNoWindow = true;
-        //        using (Process process = Process.Start(run0))
-        //        {
-        //            using (StreamReader reader = process.StandardOutput)
-        //            {
-        //                string result = reader.ReadToEnd();
-        //                Console.WriteLine(result);
-        //                RunDone = true;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        run0.RedirectStandardOutput = false;
-        //        run0.CreateNoWindow = false;
-        //        using (Process process = Process.Start(run0))
-        //        {
-        //            using (StreamReader reader = process.StandardOutput)
-        //            {
-        //                string result = reader.ReadToEnd();
-        //                Console.WriteLine(result);
-        //                RunDone = true;
-        //            }
-        //        }
-        //    }
-        //}
-
         public string GetOutput(string script)
         {
-            if (RunDone)
-            {
-                RunDone = false;
-            }
             File.Create("python3_12\\main.py").Close();
             File.WriteAllText("python3_12\\main.py", script);
 
@@ -403,13 +317,11 @@ namespace CSSimpleFunctions
             run0.Arguments = "python3_12\\main.py";
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
-            run0.CreateNoWindow = true;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    RunDone = true;
                     return result;
                 }
             }
@@ -417,22 +329,16 @@ namespace CSSimpleFunctions
 
         public string GetFileOutput(string filePath)
         {
-            if (RunDone)
-            {
-                RunDone = false;
-            }
             ProcessStartInfo run0 = new ProcessStartInfo();
             run0.FileName = "python3_12\\python.exe";
             run0.Arguments = filePath;
             run0.UseShellExecute = false;
             run0.RedirectStandardOutput = true;
-            run0.CreateNoWindow = true;
             using (Process process = Process.Start(run0))
             {
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    RunDone = true;
                     return result;
                 }
             }
